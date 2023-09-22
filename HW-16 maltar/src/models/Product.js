@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
+const config = require("../config/config");
 
-const productSchema = new monogdb.Schema(
+
+const productSchema = new mongoose.Schema(
     {
         product_name: {
             type: String,
             trim: true,
         },
-        product_price: {
+        product_imag: {
+            type: String,
+            trim: true,
+        },
+        price: {
             type: String,
             trim: true,
         },
@@ -20,11 +26,17 @@ const productSchema = new monogdb.Schema(
         },
     },
     {
-        timestamps:true,
-        versionkey: false
+        timestamps: true,
+        versionkey: false,
+        toJSON: {
+            transform: function (doc, data) {
+                if (data?.product_imag) {
+                    data.product_imag = `${config.base_url}product_images/${data.product_imag}`;
+                }
+            },
+        },
     }
-)
+);
 
-
-const product = mongoose.model("prodct",productSchema);
+const product = mongoose.model("prodct", productSchema);
 module.exports = product;
