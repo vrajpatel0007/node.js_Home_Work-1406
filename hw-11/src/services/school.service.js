@@ -10,7 +10,7 @@ const createSchool = async (reqBody) => {
   };
 
   const listSchool = async (reqBody) => {
-    return School.find(reqBody)
+    return School.find({ $or: [ { is_active:true}]})
   };
 
   const deleteSchool = async (id) => {

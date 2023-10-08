@@ -1,2 +1,3 @@
 module.exports.categoryvalidtion = require("./category.validation")
-module.exports.uservalidtion = require("./user.validtion")
+module.exports.userValidation = require("./user.validtion")
+module.exports.tokenValidation = require("./token.validation");

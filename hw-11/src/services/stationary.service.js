@@ -10,7 +10,7 @@ const createStationary = async (reqBody) => {
 };
 
   const listStationary = async (reqBody) => {
-    return Stationary.find(reqBody)
+    return Stationary.find({ $or: [ { is_active:true}]})
   };
 
   const deleteStationary = async (id) => {
